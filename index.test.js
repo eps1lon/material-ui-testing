@@ -1,5 +1,6 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import MenuList from "@material-ui/core/MenuList";
@@ -45,4 +46,10 @@ it("throws with a modal", () => {
       </Modal>
     )
   ).toThrow();
+});
+
+it("can shallow render a button", () => {
+  const renderer = new ShallowRenderer();
+  renderer.render(<Button />);
+  const result = renderer.getRenderOutput();
 });
