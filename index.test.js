@@ -14,6 +14,8 @@ function createNodeMock() {
 }
 
 it("can mount a button", () => {
-  const renderer = TestRenderer.create(<Button />, { createNodeMock });
+  const renderer = TestRenderer.create(<Button>test</Button>, {
+    createNodeMock
+  });
   expect(renderer.toJSON()).toMatchSnapshot();
 });
