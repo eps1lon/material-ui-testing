@@ -1,6 +1,8 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
 import Button from "@material-ui/core/Button";
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
 
 function createNodeMock() {
   return {
@@ -9,7 +11,8 @@ function createNodeMock() {
     ownerDocument: {
       addEventListener: () => {},
       removeEventListener: () => {}
-    }
+    },
+    focus: () => {}
   };
 }
 
@@ -17,5 +20,18 @@ it("can mount a button", () => {
   const renderer = TestRenderer.create(<Button>test</Button>, {
     createNodeMock
   });
+  expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("can mount a MenuList", () => {
+  const renderer = TestRenderer.create(
+    <MenuList autoFocus>
+      <MenuItem selected>1st item</MenuItem>
+    </MenuList>,
+    {
+      createNodeMock
+    }
+  );
+
   expect(renderer.toJSON()).toMatchSnapshot();
 });
