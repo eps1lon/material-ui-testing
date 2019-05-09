@@ -1,6 +1,7 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
 import Button from "@material-ui/core/Button";
+import Modal from "@material-ui/core/Modal";
 import MenuList from "@material-ui/core/MenuList";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -34,4 +35,14 @@ it("can mount a MenuList", () => {
   );
 
   expect(renderer.toJSON()).toMatchSnapshot();
+});
+
+it("throws with a modal", () => {
+  expect(() =>
+    TestRenderer.create(
+      <Modal open>
+        <div />
+      </Modal>
+    )
+  ).toThrow();
 });
